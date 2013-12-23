@@ -32,6 +32,9 @@ $(error "the mingw32 compiler you are using fails the openblas testsuite. please
 endif
 
 CFLAGS_add += -std=c99 -Wall -O3
+ifeq ($(USE_OPENLIBM),1)
+CFLAGS_add += -DUSE_OPENLIBM -I$(OPENLIBM_HOME)/src -I$(OPENLIBM_HOME)/include
+endif
 
 default: all
 

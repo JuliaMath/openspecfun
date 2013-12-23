@@ -221,9 +221,11 @@ static inline double my_copysign(double x, double y) { return y<0 ? -x : x; }
 
 #  include <float.h>
 
-// CHANGED for OPENLIBM:
-//#  include <openlibm.h>
+#ifdef USE_OPENLIBM
+#  include <openlibm.h>
+#else
 #  include <math.h>
+#endif
 
 typedef double complex cmplx;
 
@@ -245,10 +247,11 @@ typedef double complex cmplx;
 #    define CMPLX(a,b) __builtin_complex((double) (a), (double) (b))
 #  endif
 
-// CHANGED for OPENLIBM:
+#  ifdef USE_OPENLIBM
 #  ifndef CMPLX
 #    include "math_private.h"
 #    define CMPLX(a,b) cpack(a,b)
+#  endif
 #  endif
 
 #  ifdef CMPLX // C11
