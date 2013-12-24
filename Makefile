@@ -1,4 +1,4 @@
-xOPENLIBM_HOME=$(abspath .)
+OPENLIBM_HOME=$(abspath .)
 include ./Make.inc
 
 SUBDIRS = amos Faddeeva
