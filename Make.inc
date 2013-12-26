@@ -74,19 +74,19 @@ endif
 ifeq ($(OS), Linux)
 SHLIB_EXT = so
 CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+override FFLAGS+=-fPIC
 endif
 
 ifeq ($(OS), FreeBSD)
 SHLIB_EXT = so
 CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+override FFLAGS+=-fPIC
 endif
 
 ifeq ($(OS), Darwin)
 SHLIB_EXT = dylib
 CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+override FFLAGS+=-fPIC
 endif
 
 ifeq ($(OS), WINNT)
