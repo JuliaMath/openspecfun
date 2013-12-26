@@ -1,6 +1,7 @@
 # -*- mode: makefile-gmake -*-
 
 OS := $(shell uname)
+VERSION = 0.1
 
 FC = gfortran
 FFLAGS += -O3
