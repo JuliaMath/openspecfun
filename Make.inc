@@ -6,7 +6,18 @@ PREFIX = /usr/local
 DESTDIR =
 
 FC = gfortran
-FFLAGS += -O3
+# CFLAGS_add and FFLAGS_add are flags that we always want to include
+# They are not overridable by the user, whereas CFLAGS and FFLAGS are
+# simply defaults and are overridable via environment variables or
+# `make CFLAGS="foo"` on the command line
+
+FFLAGS = -O3
+CFLAGS = -std=c99 -Wall -O3
+CPPFLAGS =
+
+override FFLAGS_add =
+override CFLAGS_add =
+override CPPFLAGS_add =
 
 USEGCC = 1
 USECLANG = 0
@@ -21,12 +32,12 @@ AR = ar
 ifeq ($(USECLANG),1)
 USEGCC = 0
 CC = clang
-CFLAGS_add += -fno-builtin
+override CFLAGS_add += -fno-builtin
 endif
 
 ifeq ($(USEGCC),1)
 CC = gcc
-CFLAGS_add += -fno-gnu89-inline
+override CFLAGS_add += -fno-gnu89-inline
 endif
 
 ARCH := $(shell $(CC) -dumpmachine | sed "s/\([^-]*\).*$$/\1/")
@@ -34,18 +45,17 @@ ifeq ($(ARCH),mingw32)
 $(error "the mingw32 compiler you are using fails the openblas testsuite. please see the Julia README.windows.md document for a replacement")
 endif
 
-CFLAGS_add += -std=c99 -Wall -O3
 ifeq ($(USE_OPENLIBM),1)
-CFLAGS_add += -DUSE_OPENLIBM -I$(OPENLIBM_HOME)/src -I$(OPENLIBM_HOME)/include
+override CPPFLAGS_add += -DUSE_OPENLIBM -I$(OPENLIBM_HOME)/src -I$(OPENLIBM_HOME)/include
 endif
 
 default: all
 
 %.c.o: %.c
-	$(CC) $(CPPFLAGS) $(CFLAGS_add) $(CFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CPPFLAGS_add) $(CFLAGS_add) $(CFLAGS) -c $< -o $@
 
 %.f.o: %.f
-	$(FC) $(FFLAGS) -c $< -o $@
+	$(FC) $(FFLAGS) $(FFLAGS_add) -c $< -o $@
 
 %.S.o: %.S
 	$(CC) $(SFLAGS) $(filter -m% -B% -I% -D%,$(CFLAGS_add)) -c $< -o $@
@@ -68,28 +78,29 @@ endif
 ifneq (,$(findstring MINGW,$(OS)))
 override OS=WINNT
 endif
+
 #keep these if statements these separate
 ifeq ($(OS), WINNT)
-CFLAGS_add+=-nodefaultlibs
-FFLAGS+=-nodefaultlibs
+override CFLAGS_add += -nodefaultlibs
+override FFLAGS_add += -nodefaultlibs
 endif
 
 ifeq ($(OS), Linux)
 SHLIB_EXT = so
-CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+override CFLAGS_add += -fPIC
+override FFLAGS_add += -fPIC
 endif
 
 ifeq ($(OS), FreeBSD)
 SHLIB_EXT = so
-CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+override CFLAGS_add += -fPIC
+override FFLAGS_add += -fPIC
 endif
 
 ifeq ($(OS), Darwin)
 SHLIB_EXT = dylib
-CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+override CFLAGS_add += -fPIC
+override FFLAGS_add += -fPIC
 endif
 
 ifeq ($(OS), WINNT)
