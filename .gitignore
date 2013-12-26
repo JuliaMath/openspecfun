@@ -16,3 +16,11 @@
 *.exe
 *.out
 *.app
+
+# Debian build junk
+debian/tmp/*
+debian/libopenspecfun-*/*
+debian/*.debhelper
+debian/*.debhelper.log
+debian/*.substvars
+
