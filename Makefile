@@ -39,7 +39,7 @@ install: all
 
 clean:
 	@for dir in Faddeeva amos .; do \
-		rm -fr $$dir/*.o $$dir/*.a $$dir/*.$(SHLIB_EXT); \
+		rm -fr $$dir/*.o $$dir/*.a $$dir/*.$(SHLIB_EXT)*; \
 	done
 
 distclean: clean
