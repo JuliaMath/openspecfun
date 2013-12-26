@@ -25,10 +25,13 @@ all: libopenspecfun.a libopenspecfun.$(SHLIB_EXT)
 libopenspecfun.a: $(OBJS)  
 	$(AR) -rcs libopenspecfun.a $(OBJS)
 libopenspecfun.$(SHLIB_EXT): $(OBJS)
-	$(FC) -shared $(OBJS) $(LDFLAGS) -o libopenspecfun.$(SHLIB_EXT)
+	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,-soname,libopenspecfun.$(VERSION).$(SHLIB_EXT) -o libopenspecfun.$(VERSION).$(SHLIB_EXT)
+	ln -s libopenspecfun.$(VERSION).$(SHLIB_EXT) libopenspecfun.$(firstword $(subst ., , $(VERSION))).$(SHLIB_EXT)
+	ln -s libopenspecfun.$(VERSION).$(SHLIB_EXT) libopenspecfun.$(SHLIB_EXT)
 
 clean:
-	rm -fr {Faddeeva,amos,.}/*{.o,.a,.$(SHLIB_EXT),~}
+	@for dir in Faddeeva amos .; do \
+		rm -fr $$dir/*.o $$dir/*.a $$dir/*.$(SHLIB_EXT); \
+	done
 
-distclean:
-	rm -f $(OBJS) *.a *.$(SHLIB_EXT)
+distclean: clean
