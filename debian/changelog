@@ -1,3 +1,9 @@
+openspecfun (0.1+1) precise; urgency=low
+
+  * Add gfortran build dependency
+
+ -- Elliot Saba <staticfloat@gmail.com>  Thu, 26 Dec 2013 17:49:28 -0500
+
 openspecfun (0.1) precise; urgency=low
 
   * Initial release of openspecfun
