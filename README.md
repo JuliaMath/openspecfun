@@ -10,3 +10,7 @@ function, error function, complementary error function, scaled
 complementary error function, imaginary error function, and Dawson function);
 given these, one can also easily compute Voigt functions, Fresnel integrals,
 and similar related functions as well.
+
+To build, run:
+
+    make clean && make && make install
