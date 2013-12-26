@@ -22,12 +22,20 @@ OBJS =  $(patsubst %.f,%.f.o,\
 	$(patsubst %.c,%.c.o,$(filter-out $(addprefix src/,$(DUPLICATE_SRCS)),$(SRCS)))))
 
 all: libopenspecfun.a libopenspecfun.$(SHLIB_EXT) 
-libopenspecfun.a: $(OBJS)  
+libopenspecfun.a: $(OBJS)
 	$(AR) -rcs libopenspecfun.a $(OBJS)
 libopenspecfun.$(SHLIB_EXT): $(OBJS)
 	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,-soname,libopenspecfun.$(VERSION).$(SHLIB_EXT) -o libopenspecfun.$(VERSION).$(SHLIB_EXT)
 	ln -s libopenspecfun.$(VERSION).$(SHLIB_EXT) libopenspecfun.$(firstword $(subst ., , $(VERSION))).$(SHLIB_EXT)
 	ln -s libopenspecfun.$(VERSION).$(SHLIB_EXT) libopenspecfun.$(SHLIB_EXT)
+
+install: all
+	for subdir in lib include; do \
+		mkdir -p $(DESTDIR)$(PREFIX)/$$subdir; \
+	done
+
+	cp -a libopenspecfun*.$(SHLIB_EXT) libopenspecfun.a $(DESTDIR)$(PREFIX)/lib
+	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(PREFIX)/include/
 
 clean:
 	@for dir in Faddeeva amos .; do \

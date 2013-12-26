@@ -2,6 +2,8 @@
 
 OS := $(shell uname)
 VERSION = 0.1
+PREFIX = /usr/local
+DESTDIR =
 
 FC = gfortran
 FFLAGS += -O3
