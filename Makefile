@@ -25,16 +25,16 @@ all: libopenspecfun.a libopenspecfun.$(SHLIB_EXT)
 libopenspecfun.a: $(OBJS)
 	$(AR) -rcs libopenspecfun.a $(OBJS)
 libopenspecfun.$(SHLIB_EXT): $(OBJS)
-	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,-soname,libopenspecfun.$(VERSION).$(SHLIB_EXT) -o libopenspecfun.$(VERSION).$(SHLIB_EXT)
-	ln -s libopenspecfun.$(VERSION).$(SHLIB_EXT) libopenspecfun.$(firstword $(subst ., , $(VERSION))).$(SHLIB_EXT)
-	ln -s libopenspecfun.$(VERSION).$(SHLIB_EXT) libopenspecfun.$(SHLIB_EXT)
+	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,-soname,libopenspecfun.$(SHLIB_EXT).$(VERSION) -o libopenspecfun.$(SHLIB_EXT).$(VERSION)
+	ln -s libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT).$(firstword $(subst ., , $(VERSION)))
+	ln -s libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT)
 
 install: all
 	for subdir in lib include; do \
 		mkdir -p $(DESTDIR)$(PREFIX)/$$subdir; \
 	done
 
-	cp -a libopenspecfun*.$(SHLIB_EXT) libopenspecfun.a $(DESTDIR)$(PREFIX)/lib
+	cp -a libopenspecfun.$(SHLIB_EXT)* libopenspecfun.a $(DESTDIR)$(PREFIX)/lib
 	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(PREFIX)/include/
 
 clean:
