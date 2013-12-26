@@ -28,7 +28,8 @@ libopenspecfun.$(SHLIB_EXT): $(OBJS)
 	$(FC) -shared $(OBJS) $(LDFLAGS) -o libopenspecfun.$(SHLIB_EXT)
 
 clean:
-	rm -fr {Faddeeva,amos,.}/*{.o,.a,.$(SHLIB_EXT),~}
+	@for dir in Faddeeva amos .; do \
+		rm -fr $$dir/*.o $$dir/*.a $$dir/*.$(SHLIB_EXT); \
+	done
 
-distclean:
-	rm -f $(OBJS) *.a *.$(SHLIB_EXT)
+distclean: clean
