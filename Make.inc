@@ -43,7 +43,7 @@ default: all
 	$(CC) $(CPPFLAGS) $(CFLAGS_add) $(CFLAGS) -c $< -o $@
 
 %.f.o: %.f
-	$(FC) $(FFLAGS) -c $< -o $@
+	$(FC) $(FFLAGS) $(FFLAGS_add) -c $< -o $@
 
 %.S.o: %.S
 	$(CC) $(SFLAGS) $(filter -m% -B% -I% -D%,$(CFLAGS_add)) -c $< -o $@
@@ -69,25 +69,25 @@ endif
 #keep these if statements these separate
 ifeq ($(OS), WINNT)
 CFLAGS_add+=-nodefaultlibs
-FFLAGS+=-nodefaultlibs
+FFLAGS_add+=-nodefaultlibs
 endif
 
 ifeq ($(OS), Linux)
 SHLIB_EXT = so
 CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+FFLAGS_add+=-fPIC
 endif
 
 ifeq ($(OS), FreeBSD)
 SHLIB_EXT = so
 CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+FFLAGS_add+=-fPIC
 endif
 
 ifeq ($(OS), Darwin)
 SHLIB_EXT = dylib
 CFLAGS_add+=-fPIC
-FFLAGS+=-fPIC
+FFLAGS_add+=-fPIC
 endif
 
 ifeq ($(OS), WINNT)
