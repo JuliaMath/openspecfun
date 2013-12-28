@@ -25,7 +25,7 @@ all: libopenspecfun.a libopenspecfun.$(SHLIB_EXT)
 libopenspecfun.a: $(OBJS)
 	$(AR) -rcs libopenspecfun.a $(OBJS)
 libopenspecfun.$(SHLIB_EXT): $(OBJS)
-	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,-soname,libopenspecfun.$(SHLIB_EXT).$(VERSION) -o libopenspecfun.$(SHLIB_EXT).$(VERSION)
+	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(SHLIB_EXT).$(VERSION) -o libopenspecfun.$(SHLIB_EXT).$(VERSION)
 	ln -s libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT).$(firstword $(subst ., , $(VERSION)))
 	ln -s libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT)
 

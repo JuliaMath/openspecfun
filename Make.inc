@@ -81,28 +81,29 @@ endif
 
 #keep these if statements these separate
 ifeq ($(OS), WINNT)
+SHLIB_EXT = dll
+SONAME_FLAG = -soname
 override CFLAGS_add += -nodefaultlibs
 override FFLAGS_add += -nodefaultlibs
 endif
 
 ifeq ($(OS), Linux)
 SHLIB_EXT = so
+SONAME_FLAG = -soname
 override CFLAGS_add += -fPIC
 override FFLAGS_add += -fPIC
 endif
 
 ifeq ($(OS), FreeBSD)
 SHLIB_EXT = so
+SONAME_FLAG = -soname
 override CFLAGS_add += -fPIC
 override FFLAGS_add += -fPIC
 endif
 
 ifeq ($(OS), Darwin)
+SONAME_FLAG = -install_name
 SHLIB_EXT = dylib
 override CFLAGS_add += -fPIC
 override FFLAGS_add += -fPIC
-endif
-
-ifeq ($(OS), WINNT)
-SHLIB_EXT = dll
 endif
