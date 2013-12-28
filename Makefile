@@ -31,11 +31,10 @@ libopenspecfun.$(SHLIB_EXT): $(OBJS)
 	ln -s libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT)
 
 install: all
-	for subdir in $(LIBDIR) include; do \
-		mkdir -p $(DESTDIR)$(PREFIX)/$$subdir; \
-	done
+	mkdir -p $(DESTDIR)/$(LIBDIR)
+	mkdir -p $(DESTDIR)$(PREFIX)/include
 
-	cp -a libopenspecfun.$(SHLIB_EXT)* libopenspecfun.a $(DESTDIR)$(PREFIX)/$(LIBDIR)
+	cp -a libopenspecfun.$(SHLIB_EXT)* libopenspecfun.a $(DESTDIR)/$(LIBDIR)/
 	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(PREFIX)/include/
 
 clean:
