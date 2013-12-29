@@ -39,7 +39,7 @@ endif
 
 ifeq ($(USEGCC),1)
 CC = gcc
-override CFLAGS_add += -fno-gnu89-inline
+override CFLAGS_add += -fno-gnu89-inline -std=c99
 endif
 
 ARCH := $(shell $(CC) -dumpmachine | sed "s/\([^-]*\).*$$/\1/")
