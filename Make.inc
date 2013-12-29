@@ -3,7 +3,6 @@
 OS := $(shell uname)
 VERSION = 0.1.0
 VERSION_SPLIT = $(subst ., , $(VERSION))
-$(warning vs: $(VERSION_SPLIT))
 PREFIX = /usr/local
 DESTDIR =
 LIBDIR = $(PREFIX)/lib/
