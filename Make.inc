@@ -4,9 +4,9 @@ OS := $(shell uname)
 VERSION = 0.1.0
 VERSION_SPLIT = $(subst ., , $(VERSION))
 DESTDIR =
-PREFIX = /usr/local
-libdir = $(PREFIX)/lib
-includedir = $(PREFIX)/include
+prefix = /usr/local
+libdir = $(prefix)/lib
+includedir = $(prefix)/include
 
 FC = gfortran
 # CFLAGS_add and FFLAGS_add are flags that we always want to include
