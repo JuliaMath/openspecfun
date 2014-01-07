@@ -32,10 +32,10 @@ libopenspecfun.$(SHLIB_EXT): $(OBJS)
 
 install: all
 	mkdir -p $(DESTDIR)$(libdir)
-	mkdir -p $(DESTDIR)$(PREFIX)/include
+	mkdir -p $(DESTDIR)$(includedir)
 
 	cp -a libopenspecfun.$(SHLIB_EXT)* libopenspecfun.a $(DESTDIR)$(libdir)/
-	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(PREFIX)/include/
+	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(includedir)
 
 clean:
 	@for dir in Faddeeva amos .; do \

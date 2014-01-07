@@ -6,6 +6,7 @@ VERSION_SPLIT = $(subst ., , $(VERSION))
 DESTDIR =
 PREFIX = /usr/local
 libdir = $(PREFIX)/lib
+includedir = $(PREFIX)/include
 
 FC = gfortran
 # CFLAGS_add and FFLAGS_add are flags that we always want to include
