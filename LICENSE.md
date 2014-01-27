@@ -30,8 +30,8 @@ Based on the discussion at http://octave.1599824.n4.nabble.com/Can-we-freely-use
 > The AMOS functions are included in SLATEC, and the SLATEC guide 
 > (http://www.netlib.org/slatec/guide) explicitly states: 
 >
->         "The Library is in the public domain and distributed by the Energy 
-> Science and Technology Software Center." 
+>     "The Library is in the public domain and distributed by the Energy 
+>     Science and Technology Software Center." 
 >
 > Mention of AMOS's inclusion in SLATEC goes back at least to this 1985 
 > technical report from Sandia National Labs: 
