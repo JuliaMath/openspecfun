@@ -49,7 +49,7 @@ $(error "the mingw32 compiler you are using fails the openblas testsuite. please
 endif
 
 ifeq ($(USE_OPENLIBM),1)
-override CPPFLAGS_add += -DUSE_OPENLIBM -I$(OPENLIBM_HOME)/src -I$(OPENLIBM_HOME)/include
+override CPPFLAGS_add += -DUSE_OPENLIBM -I$(includedir)/openlibm/
 endif
 
 default: all
