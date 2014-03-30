@@ -249,7 +249,7 @@ typedef double complex cmplx;
 
 #  ifdef USE_OPENLIBM
 #  ifndef CMPLX
-#    include "math_private.h"
+#    include "openlibm.h"
 #    define CMPLX(a,b) cpack(a,b)
 #  endif
 #  endif
