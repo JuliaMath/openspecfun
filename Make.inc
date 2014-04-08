@@ -89,9 +89,9 @@ SHLIB_EXT = dll
 SONAME_FLAG = -soname
 override CFLAGS_add += -nodefaultlibs
 override FFLAGS_add += -nodefaultlibs
-shlibdir = bindir
+shlibdir = $(bindir)
 else
-shlibdir = libdir
+shlibdir = $(libdir)
 endif
 
 ifeq ($(OS), Linux)
