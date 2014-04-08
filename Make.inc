@@ -5,6 +5,7 @@ VERSION = 0.1.0
 VERSION_SPLIT = $(subst ., , $(VERSION))
 DESTDIR =
 prefix = /usr/local
+bindir = $(prefix)/bin
 libdir = $(prefix)/lib
 includedir = $(prefix)/include
 
@@ -82,12 +83,15 @@ ifneq (,$(findstring MINGW,$(OS)))
 override OS=WINNT
 endif
 
-#keep these if statements these separate
+#keep these if statements separate
 ifeq ($(OS), WINNT)
 SHLIB_EXT = dll
 SONAME_FLAG = -soname
 override CFLAGS_add += -nodefaultlibs
 override FFLAGS_add += -nodefaultlibs
+shlibdir = bindir
+else
+shlibdir = libdir
 endif
 
 ifeq ($(OS), Linux)
