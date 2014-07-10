@@ -1,7 +1,7 @@
 OPENLIBM_HOME=$(abspath .)
 include ./Make.inc
 
-SUBDIRS = amos Faddeeva
+SUBDIRS = amos Faddeeva rem_pio2
 
 define INC_template
 TEST=test
@@ -42,7 +42,7 @@ install: all
 	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(includedir)
 
 clean:
-	@for dir in Faddeeva amos .; do \
+	@for dir in $(SUBDIRS) .; do \
 		rm -fr $$dir/*.o $$dir/*.a $$dir/*.$(SHLIB_EXT)*; \
 	done
 
