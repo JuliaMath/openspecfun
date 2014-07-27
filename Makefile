@@ -28,9 +28,9 @@ libopenspecfun.$(SHLIB_EXT): $(OBJS)
 ifeq ($(OS),WINNT)
 	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(SHLIB_EXT) -o libopenspecfun.$(SHLIB_EXT)
 else
-	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(SHLIB_EXT).$(word 1,$(VERSION_SPLIT)) -o libopenspecfun.$(SHLIB_EXT).$(VERSION)
-	ln -sf libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT).$(word 1,$(VERSION_SPLIT))
-	ln -sf libopenspecfun.$(SHLIB_EXT).$(VERSION) libopenspecfun.$(SHLIB_EXT)
+	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(SHLIB_EXT).$(SOMAJOR) -o libopenspecfun.$(SHLIB_EXT).$(SOMAJOR).$(SOMINOR)
+	ln -sf libopenspecfun.$(SHLIB_EXT).$(SOMAJOR).$(SOMINOR) libopenspecfun.$(SHLIB_EXT).$(SOMAJOR)
+	ln -sf libopenspecfun.$(SHLIB_EXT).$(SOMAJOR).$(SOMINOR) libopenspecfun.$(SHLIB_EXT)
 endif
 
 install: all
