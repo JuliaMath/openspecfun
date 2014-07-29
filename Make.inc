@@ -113,6 +113,22 @@ override CFLAGS_add += -fPIC
 override FFLAGS_add += -fPIC
 endif
 
+# Debian GNU/kFreeBSD
+ifeq ($(OS), GNU/kFreeBSD)
+SHLIB_EXT = so
+SONAME_FLAG = -soname
+override CFLAGS_add += -fPIC
+override FFLAGS_add += -fPIC
+endif
+
+# GNU Hurd
+ifeq ($(OS), GNU)
+SHLIB_EXT = so
+SONAME_FLAG = -soname
+override CFLAGS_add += -fPIC
+override FFLAGS_add += -fPIC
+endif
+
 ifeq ($(OS), Darwin)
 SONAME_FLAG = -install_name
 SHLIB_EXT = dylib
