@@ -88,34 +88,21 @@ ifneq (,$(findstring MINGW,$(OS)))
 override OS=WINNT
 endif
 
-#keep these if statements separate
 ifeq ($(OS), WINNT)
-SHLIB_EXT = dll
-SONAME_FLAG = -soname
-override CFLAGS_add += -nodefaultlibs
-override FFLAGS_add += -nodefaultlibs
-shlibdir = $(bindir)
+  SHLIB_EXT = dll
+  SONAME_FLAG = -soname
+  override CFLAGS_add += -nodefaultlibs
+  override FFLAGS_add += -nodefaultlibs
+  shlibdir = $(bindir)
 else
-shlibdir = $(libdir)
-endif
-
-ifeq ($(OS), Linux)
-SHLIB_EXT = so
-SONAME_FLAG = -soname
-override CFLAGS_add += -fPIC
-override FFLAGS_add += -fPIC
-endif
-
-ifeq ($(OS), FreeBSD)
-SHLIB_EXT = so
-SONAME_FLAG = -soname
-override CFLAGS_add += -fPIC
-override FFLAGS_add += -fPIC
-endif
-
-ifeq ($(OS), Darwin)
-SONAME_FLAG = -install_name
-SHLIB_EXT = dylib
-override CFLAGS_add += -fPIC
-override FFLAGS_add += -fPIC
+  ifeq ($(OS), Darwin)
+    SHLIB_EXT = dylib
+    SONAME_FLAG = -install_name
+  else
+    SHLIB_EXT = so
+    SONAME_FLAG = -soname
+  endif
+  override CFLAGS_add += -fPIC
+  override FFLAGS_add += -fPIC
+  shlibdir = $(libdir)
 endif
