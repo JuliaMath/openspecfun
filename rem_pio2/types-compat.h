@@ -10,7 +10,7 @@
 #define __pure2 
 #endif
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__sun)
 /* Not sure what to do about __pure2 on windows */
 #define __pure2 
 typedef uint8_t               u_int8_t;
