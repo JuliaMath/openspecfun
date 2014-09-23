@@ -1,7 +1,7 @@
 #ifndef _CDEFS_COMPAT_H_
 #define	_CDEFS_COMPAT_H_
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__sun)
 #include "sys/cdefs.h"
 #else /* _WIN32 */
 

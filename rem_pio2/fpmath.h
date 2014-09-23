@@ -41,16 +41,16 @@
 #ifdef __linux
 #include <features.h>
 #include <endian.h>
-#define _LITTLE_ENDIAN  __LITTLE_ENDIAN
-#define _BIG_ENDIAN     __BIG_ENDIAN
+#define _FPMATH_LITTLE_ENDIAN  __LITTLE_ENDIAN
+#define _FPMATH_BIG_ENDIAN     __BIG_ENDIAN
 #define _PDP_ENDIAN     __PDP_ENDIAN
 #define _BYTE_ORDER     __BYTE_ORDER
 #endif
 
 #ifdef __APPLE__
 #include <machine/endian.h>
-#define _LITTLE_ENDIAN  LITTLE_ENDIAN
-#define _BIG_ENDIAN     BIG_ENDIAN
+#define _FPMATH_LITTLE_ENDIAN  LITTLE_ENDIAN
+#define _FPMATH_BIG_ENDIAN     BIG_ENDIAN
 #define _PDP_ENDIAN     PDP_ENDIAN
 #define _BYTE_ORDER     BYTE_ORDER
 #endif
@@ -60,15 +60,27 @@
 #endif
 
 #ifdef _WIN32
-#define _LITTLE_ENDIAN 1234
-#define _BIG_ENDIAN    4321
+#define _FPMATH_LITTLE_ENDIAN 1234
+#define _FPMATH_BIG_ENDIAN    4321
 #define _PDP_ENDIAN    3412
-#define _BYTE_ORDER       _LITTLE_ENDIAN
-#define _FLOAT_WORD_ORDER _LITTLE_ENDIAN
-#define LITTLE_ENDIAN  _LITTLE_ENDIAN
-#define BIG_ENDIAN     _BIG_ENDIAN
+#define _BYTE_ORDER       _FPMATH_LITTLE_ENDIAN
+#define _FLOAT_WORD_ORDER _FPMATH_LITTLE_ENDIAN
+#define LITTLE_ENDIAN  _FPMATH_LITTLE_ENDIAN
+#define BIG_ENDIAN     _FPMATH_BIG_ENDIAN
 #define PDP_ENDIAN     _PDP_ENDIAN
 #define BYTE_ORDER     _BYTE_ORDER
+#endif
+
+#ifdef __sun
+#define _FPMATH_LITTLE_ENDIAN 1234
+#define _FPMATH_BIG_ENDIAN    4321
+#include <sys/isa_defs.h>
+#ifdef _LITTLE_ENDIAN
+#define _BYTE_ORDER _FPMATH_LITTLE_ENDIAN
+#endif
+#ifdef _BIG_ENDIAN
+#define _BYTE_ORDER _FPMATH_BIG_ENDIAN
+#endif
 #endif
 
 #ifndef _IEEE_WORD_ORDER
@@ -78,11 +90,11 @@
 union IEEEf2bits {
 	float	f;
 	struct {
-#if _BYTE_ORDER == _LITTLE_ENDIAN
+#if _BYTE_ORDER == _FPMATH_LITTLE_ENDIAN
 		unsigned int	man	:23;
 		unsigned int	exp	:8;
 		unsigned int	sign	:1;
-#else /* _BIG_ENDIAN */
+#else /* _FPMATH_BIG_ENDIAN */
 		unsigned int	sign	:1;
 		unsigned int	exp	:8;
 		unsigned int	man	:23;
@@ -96,17 +108,17 @@ union IEEEf2bits {
 union IEEEd2bits {
 	double	d;
 	struct {
-#if _BYTE_ORDER == _LITTLE_ENDIAN
-#if _IEEE_WORD_ORDER == _LITTLE_ENDIAN
+#if _BYTE_ORDER == _FPMATH_LITTLE_ENDIAN
+#if _IEEE_WORD_ORDER == _FPMATH_LITTLE_ENDIAN
 		unsigned int	manl	:32;
 #endif
 		unsigned int	manh	:20;
 		unsigned int	exp	:11;
 		unsigned int	sign	:1;
-#if _IEEE_WORD_ORDER == _BIG_ENDIAN
+#if _IEEE_WORD_ORDER == _FPMATH_BIG_ENDIAN
 		unsigned int	manl	:32;
 #endif
-#else /* _BIG_ENDIAN */
+#else /* _FPMATH_BIG_ENDIAN */
 		unsigned int	sign	:1;
 		unsigned int	exp	:11;
 		unsigned int	manh	:20;

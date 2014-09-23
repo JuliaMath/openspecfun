@@ -41,7 +41,7 @@
  * ints.
  */
 
-#if _IEEE_WORD_ORDER == _BIG_ENDIAN
+#if _IEEE_WORD_ORDER == _FPMATH_BIG_ENDIAN
 
 typedef union
 {
@@ -59,7 +59,7 @@ typedef union
 
 #endif
 
-#if _IEEE_WORD_ORDER == _LITTLE_ENDIAN
+#if _IEEE_WORD_ORDER == _FPMATH_LITTLE_ENDIAN
 
 typedef union
 {
