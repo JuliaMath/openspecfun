@@ -38,7 +38,7 @@ C
      3    -2.15241674114950973D-04,    -2.01348547807882387D-05,
      4     1.13302723198169588D-06,     6.11609510448141582D-09/
 C
-      CAZ = ZABS(COMPLEX(ZR,ZI))
+      CAZ = ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       CSCLR = 1.0D0/TOL
       CRSCR = TOL
       CSSR(1) = CSCLR
@@ -320,7 +320,7 @@ C-----------------------------------------------------------------------
 C     COMPUTE (P2/CS)=(P2/CABS(CS))*(CONJG(CS)/CABS(CS)) FOR BETTER
 C     SCALING
 C-----------------------------------------------------------------------
-      TM = ZABS(COMPLEX(CSR,CSI))
+      TM = ZABS(CMPLX(CSR,CSI,kind=KIND(1.0D0)))
       PTR = 1.0D0/TM
       S1R = P2R*PTR
       S1I = P2I*PTR
@@ -337,7 +337,7 @@ C-----------------------------------------------------------------------
 C-----------------------------------------------------------------------
 C     COMPUTE P1/P2=(P1/CABS(P2)*CONJG(P2)/CABS(P2) FOR SCALING
 C-----------------------------------------------------------------------
-      TM = ZABS(COMPLEX(P2R,P2I))
+      TM = ZABS(CMPLX(P2R,P2I,kind=KIND(1.0D0)))
       PTR = 1.0D0/TM
       P1R = P1R*PTR
       P1I = P1I*PTR
@@ -472,7 +472,7 @@ C-----------------------------------------------------------------------
         S1I = STI
         CKR = CKR+RZR
         CKI = CKI+RZI
-        AS = ZABS(COMPLEX(S2R,S2I))
+        AS = ZABS(CMPLX(S2R,S2I,kind=KIND(1.0D0)))
         ALAS = DLOG(AS)
         P2R = -ZDR+ALAS
         IF(P2R.LT.(-ELIM)) GO TO 263

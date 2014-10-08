@@ -102,7 +102,7 @@ C-----------------------------------------------------------------------
       IF (N.EQ.2) RETURN
       CSPNR = -CSPNR
       CSPNI = -CSPNI
-      AZN = ZABS(COMPLEX(ZNR,ZNI))
+      AZN = ZABS(CMPLX(ZNR,ZNI,kind=KIND(1.0D0)))
       RAZN = 1.0D0/AZN
       STR = ZNR*RAZN
       STI = -ZNI*RAZN
@@ -125,7 +125,7 @@ C-----------------------------------------------------------------------
       BRY(1) = ASCLE
       BRY(2) = 1.0D0/ASCLE
       BRY(3) = D1MACH(2)
-      AS2 = ZABS(COMPLEX(S2R,S2I))
+      AS2 = ZABS(CMPLX(S2R,S2I,kind=KIND(1.0D0)))
       KFLAG = 2
       IF (AS2.GT.BRY(1)) GO TO 50
       KFLAG = 1

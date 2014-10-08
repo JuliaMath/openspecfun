@@ -26,7 +26,7 @@ C     COMPLEX CSGN,CSPN,C1,C2,Y,Z,ZN,CY
       NZ = 0
       ZNR = -ZR
       ZNI = -ZI
-      AZ = ZABS(COMPLEX(ZR,ZI))
+      AZ = ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       NN = N
       DFNU = FNU + DBLE(FLOAT(N-1))
       IF (AZ.LE.2.0D0) GO TO 10

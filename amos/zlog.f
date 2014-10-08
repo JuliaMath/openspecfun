@@ -31,7 +31,7 @@ C
       BI = 0.0D+0
       RETURN
    40 IF (AR.LT.0.0D+0) DTHETA = DTHETA + DPI
-   50 ZM = ZABS(COMPLEX(AR,AI))
+   50 ZM = ZABS(CMPLX(AR,AI,kind=KIND(1.0D0)))
       BR = DLOG(ZM)
       BI = DTHETA
       RETURN

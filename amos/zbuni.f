@@ -46,7 +46,7 @@ C-----------------------------------------------------------------------
    20 CONTINUE
       IF (NW.LT.0) GO TO 50
       IF (NW.NE.0) GO TO 90
-      STR = ZABS(COMPLEX(CYR(1),CYI(1)))
+      STR = ZABS(CMPLX(CYR(1),CYI(1),kind=KIND(1.0D0)))
 C----------------------------------------------------------------------
 C     SCALE BACKWARD RECURRENCE, BRY(3) IS DEFINED BUT NEVER USED
 C----------------------------------------------------------------------
@@ -72,7 +72,7 @@ C----------------------------------------------------------------------
       S1I = CYI(2)*CSCLR
       S2R = CYR(1)*CSCLR
       S2I = CYI(1)*CSCLR
-      RAZ = 1.0D0/ZABS(COMPLEX(ZR,ZI))
+      RAZ = 1.0D0/ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       STR = ZR*RAZ
       STI = -ZI*RAZ
       RZR = (STR+STR)*RAZ

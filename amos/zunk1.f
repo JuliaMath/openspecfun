@@ -65,7 +65,7 @@ C-----------------------------------------------------------------------
         IF (KODE.EQ.1) GO TO 20
         STR = ZRR + ZETA2R(J)
         STI = ZRI + ZETA2I(J)
-        RAST = FN/ZABS(COMPLEX(STR,STI))
+        RAST = FN/ZABS(CMPLX(STR,STI,kind=KIND(1.0D0)))
         STR = STR*RAST*RAST
         STI = -STI*RAST*RAST
         S1R = ZETA1R(J) - STR
@@ -85,7 +85,7 @@ C-----------------------------------------------------------------------
 C-----------------------------------------------------------------------
 C     REFINE  TEST AND SCALE
 C-----------------------------------------------------------------------
-        APHI = ZABS(COMPLEX(PHIR(J),PHII(J)))
+        APHI = ZABS(CMPLX(PHIR(J),PHII(J),kind=KIND(1.0D0)))
         RS1 = RS1 + DLOG(APHI)
         IF (DABS(RS1).GT.ELIM) GO TO 60
         IF (KDFLG.EQ.1) KFLAG = 1
@@ -133,7 +133,7 @@ C-----------------------------------------------------------------------
    70 CONTINUE
       I = N
    75 CONTINUE
-      RAZR = 1.0D0/ZABS(COMPLEX(ZRR,ZRI))
+      RAZR = 1.0D0/ZABS(CMPLX(ZRR,ZRI,kind=KIND(1.0D0)))
       STR = ZRR*RAZR
       STI = -ZRI*RAZR
       RZR = (STR+STR)*RAZR
@@ -156,7 +156,7 @@ C-----------------------------------------------------------------------
       IF (KODE.EQ.1) GO TO 80
       STR = ZRR + ZET2DR
       STI = ZRI + ZET2DI
-      RAST = FN/ZABS(COMPLEX(STR,STI))
+      RAST = FN/ZABS(CMPLX(STR,STI,kind=KIND(1.0D0)))
       STR = STR*RAST*RAST
       STI = -STI*RAST*RAST
       S1R = ZET1DR - STR
@@ -172,7 +172,7 @@ C-----------------------------------------------------------------------
 C----------------------------------------------------------------------------
 C     REFINE ESTIMATE AND TEST
 C-------------------------------------------------------------------------
-      APHI = ZABS(COMPLEX(PHIDR,PHIDI))
+      APHI = ZABS(CMPLX(PHIDR,PHIDI,kind=KIND(1.0D0)))
       RS1 = RS1+DLOG(APHI)
       IF (DABS(RS1).LT.ELIM) GO TO 100
    95 CONTINUE
@@ -287,7 +287,7 @@ C-----------------------------------------------------------------------
         IF (KODE.EQ.1) GO TO 200
         STR = ZRR + ZET2DR
         STI = ZRI + ZET2DI
-        RAST = FN/ZABS(COMPLEX(STR,STI))
+        RAST = FN/ZABS(CMPLX(STR,STI,kind=KIND(1.0D0)))
         STR = STR*RAST*RAST
         STI = -STI*RAST*RAST
         S1R = -ZET1DR + STR
@@ -307,7 +307,7 @@ C-----------------------------------------------------------------------
 C-----------------------------------------------------------------------
 C     REFINE  TEST AND SCALE
 C-----------------------------------------------------------------------
-        APHI = ZABS(COMPLEX(PHIDR,PHIDI))
+        APHI = ZABS(CMPLX(PHIDR,PHIDI,kind=KIND(1.0D0)))
         RS1 = RS1 + DLOG(APHI)
         IF (DABS(RS1).GT.ELIM) GO TO 260
         IF (KDFLG.EQ.1) IFLAG = 1
