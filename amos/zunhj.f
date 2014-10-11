@@ -457,7 +457,7 @@ C-----------------------------------------------------------------------
       RFN13 = 1.0D0/FN13
       W2R = CONER - ZBR*ZBR + ZBI*ZBI
       W2I = CONEI - ZBR*ZBI - ZBR*ZBI
-      AW2 = ZABS(COMPLEX(W2R,W2I))
+      AW2 = ZABS(CMPLX(W2R,W2I,kind=KIND(1.0D0)))
       IF (AW2.GT.0.25D0) GO TO 130
 C-----------------------------------------------------------------------
 C     POWER SERIES FOR CABS(W2).LE.0.25D0
@@ -581,7 +581,7 @@ C-----------------------------------------------------------------------
       ZETA1I = ZCI*FNU
       ZETA2R = WR*FNU
       ZETA2I = WI*FNU
-      AZTH = ZABS(COMPLEX(ZTHR,ZTHI))
+      AZTH = ZABS(CMPLX(ZTHR,ZTHI,kind=KIND(1.0D0)))
       ANG = THPI
       IF (ZTHR.GE.0.0D0 .AND. ZTHI.LT.0.0D0) GO TO 140
       ANG = HPI

@@ -14,7 +14,7 @@ C***END PROLOGUE  ZBINU
       DATA ZEROR,ZEROI / 0.0D0, 0.0D0 /
 C
       NZ = 0
-      AZ = ZABS(COMPLEX(ZR,ZI))
+      AZ = ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       NN = N
       DFNU = FNU + DBLE(FLOAT(N-1))
       IF (AZ.LE.2.0D0) GO TO 10

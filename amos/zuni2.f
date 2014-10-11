@@ -85,7 +85,7 @@ C-----------------------------------------------------------------------
       IF (KODE.EQ.1) GO TO 20
       STR = ZBR + ZETA2R
       STI = ZBI + ZETA2I
-      RAST = FN/ZABS(COMPLEX(STR,STI))
+      RAST = FN/ZABS(CMPLX(STR,STI,kind=KIND(1.0D0)))
       STR = STR*RAST*RAST
       STI = -STI*RAST*RAST
       S1R = -ZETA1R + STR
@@ -106,7 +106,7 @@ C-----------------------------------------------------------------------
         IF (KODE.EQ.1) GO TO 50
         STR = ZBR + ZETA2R
         STI = ZBI + ZETA2I
-        RAST = FN/ZABS(COMPLEX(STR,STI))
+        RAST = FN/ZABS(CMPLX(STR,STI,kind=KIND(1.0D0)))
         STR = STR*RAST*RAST
         STI = -STI*RAST*RAST
         S1R = -ZETA1R + STR
@@ -127,8 +127,8 @@ C-----------------------------------------------------------------------
 C     REFINE  TEST AND SCALE
 C-----------------------------------------------------------------------
 C-----------------------------------------------------------------------
-        APHI = ZABS(COMPLEX(PHIR,PHII))
-        AARG = ZABS(COMPLEX(ARGR,ARGI))
+        APHI = ZABS(CMPLX(PHIR,PHII,kind=KIND(1.0D0)))
+        AARG = ZABS(CMPLX(ARGR,ARGI,kind=KIND(1.0D0)))
         RS1 = RS1 + DLOG(APHI) - 0.25D0*DLOG(AARG) - AIC
         IF (DABS(RS1).GT.ELIM) GO TO 120
         IF (I.EQ.1) IFLAG = 1
@@ -171,7 +171,7 @@ C-----------------------------------------------------------------------
         C2R = STR
    90 CONTINUE
       IF (ND.LE.2) GO TO 110
-      RAZ = 1.0D0/ZABS(COMPLEX(ZR,ZI))
+      RAZ = 1.0D0/ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       STR = ZR*RAZ
       STI = -ZI*RAZ
       RZR = (STR+STR)*RAZ

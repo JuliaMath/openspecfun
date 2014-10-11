@@ -25,7 +25,7 @@ C
         S1I = YI(I)
         CYR(I) = S1R
         CYI(I) = S1I
-        AS = ZABS(COMPLEX(S1R,S1I))
+        AS = ZABS(CMPLX(S1R,S1I,kind=KIND(1.0D0)))
         ACS = -ZRR + DLOG(AS)
         NZ = NZ + 1
         YR(I) = ZEROR
@@ -78,7 +78,7 @@ C
         S1I = CSI
         CKR = CKR + RZR
         CKI = CKI + RZI
-        AS = ZABS(COMPLEX(S2R,S2I))
+        AS = ZABS(CMPLX(S2R,S2I,kind=KIND(1.0D0)))
         ALAS = DLOG(AS)
         ACS = -ZDR + ALAS
         NZ = NZ + 1

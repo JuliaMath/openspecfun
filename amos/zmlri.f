@@ -18,7 +18,7 @@ C     COMPLEX CK,CNORM,CONE,CTWO,CZERO,PT,P1,P2,RZ,SUM,Y,Z
       DATA ZEROR,ZEROI,CONER,CONEI / 0.0D0, 0.0D0, 1.0D0, 0.0D0 /
       SCLE = D1MACH(1)/TOL
       NZ=0
-      AZ = ZABS(COMPLEX(ZR,ZI))
+      AZ = ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       IAZ = INT(SNGL(AZ))
       IFNU = INT(SNGL(FNU))
       INU = IFNU + N - 1
@@ -52,7 +52,7 @@ C-----------------------------------------------------------------------
         P1I = PTI
         CKR = CKR + RZR
         CKI = CKI + RZI
-        AP = ZABS(COMPLEX(P2R,P2I))
+        AP = ZABS(CMPLX(P2R,P2I,kind=KIND(1.0D0)))
         IF (AP.GT.TST*AK*AK) GO TO 20
         AK = AK + 1.0D0
    10 CONTINUE
@@ -85,12 +85,12 @@ C-----------------------------------------------------------------------
         P1I = PTI
         CKR = CKR + RZR
         CKI = CKI + RZI
-        AP = ZABS(COMPLEX(P2R,P2I))
+        AP = ZABS(CMPLX(P2R,P2I,kind=KIND(1.0D0)))
         IF (AP.LT.TST) GO TO 30
         IF (ITIME.EQ.2) GO TO 40
-        ACK = ZABS(COMPLEX(CKR,CKI))
+        ACK = ZABS(CMPLX(CKR,CKI,kind=KIND(1.0D0)))
         FLAM = ACK + DSQRT(ACK*ACK-1.0D0)
-        FKAP = AP/ZABS(COMPLEX(P1R,P1I))
+        FKAP = AP/ZABS(CMPLX(P1R,P1I,kind=KIND(1.0D0)))
         RHO = DMIN1(FLAM,FKAP)
         TST = TST*DSQRT(RHO/(RHO*RHO-1.0D0))
         ITIME = 2
@@ -184,7 +184,7 @@ C     IN THE DENOMINATOR BY SQUARING LARGE QUANTITIES
 C-----------------------------------------------------------------------
       P2R = P2R + SUMR
       P2I = P2I + SUMI
-      AP = ZABS(COMPLEX(P2R,P2I))
+      AP = ZABS(CMPLX(P2R,P2I,kind=KIND(1.0D0)))
       P1R = 1.0D0/AP
       CALL ZEXP(PTR, PTI, STR, STI)
       CKR = STR*P1R

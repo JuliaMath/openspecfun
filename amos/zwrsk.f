@@ -39,7 +39,7 @@ C     THE UNDER AND OVERFLOW LIMITS AND THE NORMALIZATION MUST BE
 C     SCALED TO PREVENT OVER OR UNDERFLOW. CUOIK HAS DETERMINED THAT
 C     THE RESULT IS ON SCALE.
 C-----------------------------------------------------------------------
-      ACW = ZABS(COMPLEX(CWR(2),CWI(2)))
+      ACW = ZABS(CMPLX(CWR(2),CWI(2),kind=KIND(1.0D0)))
       ASCLE = 1.0D+3*D1MACH(1)/TOL
       CSCLR = 1.0D0
       IF (ACW.GT.ASCLE) GO TO 20
@@ -66,7 +66,7 @@ C-----------------------------------------------------------------------
       PTI = PTI + C2I
       CTR = ZRR*PTR - ZRI*PTI
       CTI = ZRR*PTI + ZRI*PTR
-      ACT = ZABS(COMPLEX(CTR,CTI))
+      ACT = ZABS(CMPLX(CTR,CTI,kind=KIND(1.0D0)))
       RACT = 1.0D0/ACT
       CTR = CTR*RACT
       CTI = -CTI*RACT

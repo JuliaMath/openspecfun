@@ -78,7 +78,7 @@ C-----------------------------------------------------------------------
      * ZETA1I, ZETA2R, ZETA2I, ASUMR, ASUMI, BSUMR, BSUMI)
       CZR = -ZETA1R + ZETA2R
       CZI = -ZETA1I + ZETA2I
-      AARG = ZABS(COMPLEX(ARGR,ARGI))
+      AARG = ZABS(CMPLX(ARGR,ARGI,kind=KIND(1.0D0)))
    50 CONTINUE
       IF (KODE.EQ.1) GO TO 60
       CZR = CZR - ZBR
@@ -88,7 +88,7 @@ C-----------------------------------------------------------------------
       CZR = -CZR
       CZI = -CZI
    70 CONTINUE
-      APHI = ZABS(COMPLEX(PHIR,PHII))
+      APHI = ZABS(CMPLX(PHIR,PHII,kind=KIND(1.0D0)))
       RCZ = CZR
 C-----------------------------------------------------------------------
 C     OVERFLOW TEST
@@ -151,13 +151,13 @@ C-----------------------------------------------------------------------
      * ZETA1I, ZETA2R, ZETA2I, ASUMR, ASUMI, BSUMR, BSUMI)
       CZR = -ZETA1R + ZETA2R
       CZI = -ZETA1I + ZETA2I
-      AARG = ZABS(COMPLEX(ARGR,ARGI))
+      AARG = ZABS(CMPLX(ARGR,ARGI,kind=KIND(1.0D0)))
   160 CONTINUE
       IF (KODE.EQ.1) GO TO 170
       CZR = CZR - ZBR
       CZI = CZI - ZBI
   170 CONTINUE
-      APHI = ZABS(COMPLEX(PHIR,PHII))
+      APHI = ZABS(CMPLX(PHIR,PHII,kind=KIND(1.0D0)))
       RCZ = CZR
       IF (RCZ.LT.(-ELIM)) GO TO 180
       IF (RCZ.GT.(-ALIM)) RETURN

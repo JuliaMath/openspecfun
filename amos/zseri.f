@@ -24,7 +24,7 @@ C     COMPLEX AK1,CK,COEF,CONE,CRSC,CSCL,CZ,CZERO,HZ,RZ,S1,S2,Y,Z
       DATA ZEROR,ZEROI,CONER,CONEI / 0.0D0, 0.0D0, 1.0D0, 0.0D0 /
 C
       NZ = 0
-      AZ = ZABS(COMPLEX(ZR,ZI))
+      AZ = ZABS(CMPLX(ZR,ZI,kind=KIND(1.0D0)))
       IF (AZ.EQ.0.0D0) GO TO 160
       ARM = 1.0D+3*D1MACH(1)
       RTR1 = DSQRT(ARM)
@@ -38,7 +38,7 @@ C
       IF (AZ.LE.RTR1) GO TO 10
       CALL ZMLT(HZR, HZI, HZR, HZI, CZR, CZI)
    10 CONTINUE
-      ACZ = ZABS(COMPLEX(CZR,CZI))
+      ACZ = ZABS(CMPLX(CZR,CZI,kind=KIND(1.0D0)))
       NN = N
       CALL ZLOG(HZR, HZI, CKR, CKI, IDUM)
    20 CONTINUE
@@ -157,7 +157,7 @@ C-----------------------------------------------------------------------
         YI(K) = CKI
         AK = AK - 1.0D0
         K = K - 1
-        IF (ZABS(COMPLEX(CKR,CKI)).GT.ASCLE) GO TO 140
+        IF (ZABS(CMPLX(CKR,CKI,kind=KIND(1.0D0))).GT.ASCLE) GO TO 140
   130 CONTINUE
       RETURN
   140 CONTINUE
