@@ -29,15 +29,6 @@
 #ifndef _FPMATH_H_
 #define _FPMATH_H_
 
-// Currently assumes Intel platform
-#if defined (__i386__) || defined(__x86_64__)
-#ifdef __LP64__
-#include "amd64_fpmath.h"
-#else 
-#include "i386_fpmath.h"
-#endif
-#endif
-
 // We need to find out the byte ordering of the system.
 //
 // This will be stored in the following macros:
