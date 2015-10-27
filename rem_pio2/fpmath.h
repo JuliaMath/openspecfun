@@ -43,8 +43,8 @@
 #  define _FPMATH_LITTLE_ENDIAN __ORDER_LITTLE_ENDIAN__
 #  define _FPMATH_BYTE_ORDER    __BYTE_ORDER__
 // If not defined by the preprocessor, let us try to do it ourselves.
-// Linux
-#elif defined(__linux)
+// GNU C Library (GLIBC) - Linux, GNU/kFreeBSD, GNU/Hurd, etc.
+#elif defined(__GLIBC__)
 #  include <features.h>
 #  include <endian.h>
 #  define _FPMATH_LITTLE_ENDIAN  __LITTLE_ENDIAN
