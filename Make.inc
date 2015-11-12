@@ -88,6 +88,8 @@ ifneq (,$(findstring MINGW,$(OS)))
 override OS=WINNT
 endif
 
+#keep these if statements separate
+
 ifeq ($(OS), WINNT)
   SHLIB_EXT = dll
   SONAME_FLAG = -soname
