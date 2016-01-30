@@ -58,7 +58,7 @@ __ieee754_rem_pio2(double x, double *y)
 	double z,w,t,r,fn;
 	double tx[3],ty[2];
 	int32_t e0,i,j,nx,n,ix,hx;
-	u_int32_t low;
+	uint32_t low;
 
 	GET_HIGH_WORD(hx,x);		/* high word of x */
 	ix = hx&0x7fffffff;
@@ -139,7 +139,7 @@ medium:
 	    r  = x-fn*pio2_1;
 	    w  = fn*pio2_1t;	/* 1st round good to 85 bit */
 	    {
-	        u_int32_t high;
+	        uint32_t high;
 	        j  = ix>>20;
 	        y[0] = r-w; 
 		GET_HIGH_WORD(high,y[0]);
