@@ -48,12 +48,12 @@ typedef union
   double value;
   struct
   {
-    u_int32_t msw;
-    u_int32_t lsw;
+    uint32_t msw;
+    uint32_t lsw;
   } parts;
   struct
   {
-    u_int64_t w;
+    uint64_t w;
   } xparts;
 } ieee_double_shape_type;
 
@@ -66,12 +66,12 @@ typedef union
   double value;
   struct
   {
-    u_int32_t lsw;
-    u_int32_t msw;
+    uint32_t lsw;
+    uint32_t msw;
   } parts;
   struct
   {
-    u_int64_t w;
+    uint64_t w;
   } xparts;
 } ieee_double_shape_type;
 
@@ -227,7 +227,7 @@ do {								\
 /*
  * Common routine to process the arguments to nan(), nanf(), and nanl().
  */
-void _scan_nan(u_int32_t *__words, int __num_words, const char *__s);
+void _scan_nan(uint32_t *__words, int __num_words, const char *__s);
  
 #ifdef __GNUCLIKE_ASM
 
