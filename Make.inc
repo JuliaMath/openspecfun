@@ -56,6 +56,7 @@ endif
 
 ifeq ($(USE_OPENLIBM),1)
 override CPPFLAGS_add += -DUSE_OPENLIBM -I$(includedir) -I$(includedir)/openlibm/
+LDFLAGS += -lopenlibm
 endif
 
 default: all
@@ -108,3 +109,4 @@ else
   override FFLAGS_add += -fPIC
   shlibdir = $(libdir)
 endif
+LDFLAGS += -L$(shlibdir)
