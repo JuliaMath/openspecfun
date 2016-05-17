@@ -28,7 +28,11 @@
 #define FADDEEVA_H 1
 
 // Require C99 complex-number support
-#include <complex.h>
+#ifdef USE_OPENLIBM
+#  include <openlibm_complex.h>
+#else
+#  include <math.h>
+#endif
 
 #ifdef __cplusplus
 extern "C"

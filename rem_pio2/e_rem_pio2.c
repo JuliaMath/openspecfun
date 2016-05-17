@@ -13,7 +13,6 @@
  * Optimized by Bruce D. Evans.
  */
 
-#include "cdefs-compat.h"
 //__FBSDID("$FreeBSD: src/lib/msun/src/e_rem_pio2.c,v 1.22 2011/06/19 17:07:58 kargl Exp $");
 
 /* __ieee754_rem_pio2(x,y)
@@ -24,7 +23,14 @@
 
 #include <float.h>
 
+#ifdef USE_OPENLIBM
 #include "openlibm.h"
+#include "openlibm_complex.h"
+#else
+#include <math.h>
+#include <complex.h>
+#endif
+
 #include "math_private.h"
 
 /*
