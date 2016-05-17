@@ -21,23 +21,35 @@ OBJS =  $(patsubst %.f,%.f.o,\
 	$(patsubst %.S,%.S.o,\
 	$(patsubst %.c,%.c.o,$(filter-out $(addprefix src/,$(DUPLICATE_SRCS)),$(SRCS)))))
 
-all: libopenspecfun.a libopenspecfun.$(SHLIB_EXT) 
+# If we're on windows, don't do versioned shared libraries.  If we're on OSX,
+# put the version number before the .dylib.  Otherwise, put it after.
+ifeq ($(OS), WINNT)
+OSF_MAJOR_MINOR_SHLIB_EXT := $(SHLIB_EXT)
+else
+ifeq ($(OS), Darwin)
+OSF_MAJOR_MINOR_SHLIB_EXT := $(SOMAJOR).$(SOMINOR).$(SHLIB_EXT)
+OSF_MAJOR_SHLIB_EXT := $(SOMAJOR).$(SHLIB_EXT)
+else
+OSF_MAJOR_MINOR_SHLIB_EXT := $(SHLIB_EXT).$(SOMAJOR).$(SOMINOR)
+OSF_MAJOR_SHLIB_EXT := $(SHLIB_EXT).$(SOMAJOR)
+endif
+endif
+
+all: libopenspecfun.a libopenspecfun.$(OSF_MAJOR_MINOR_SHLIB_EXT)
 libopenspecfun.a: $(OBJS)
 	$(AR) -rcs libopenspecfun.a $(OBJS)
-libopenspecfun.$(SHLIB_EXT): $(OBJS)
-ifeq ($(OS),WINNT)
-	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(SHLIB_EXT) -o libopenspecfun.$(SHLIB_EXT)
-else
-	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(SHLIB_EXT).$(SOMAJOR) -o libopenspecfun.$(SHLIB_EXT).$(SOMAJOR).$(SOMINOR)
-	ln -sf libopenspecfun.$(SHLIB_EXT).$(SOMAJOR).$(SOMINOR) libopenspecfun.$(SHLIB_EXT).$(SOMAJOR)
-	ln -sf libopenspecfun.$(SHLIB_EXT).$(SOMAJOR).$(SOMINOR) libopenspecfun.$(SHLIB_EXT)
+libopenspecfun.$(OSF_MAJOR_MINOR_SHLIB_EXT): $(OBJS)
+	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(OSF_MAJOR_SHLIB_EXT) -o $@
+ifneq ($(OS),WINNT)
+	ln -sf $@ libopenspecfun.$(OSF_MAJOR_SHLIB_EXT)
+	ln -sf $@ libopenspecfun.$(SHLIB_EXT)
 endif
 
 install: all
 	mkdir -p $(DESTDIR)$(shlibdir)
 	mkdir -p $(DESTDIR)$(libdir)
 	mkdir -p $(DESTDIR)$(includedir)
-	cp -a libopenspecfun.$(SHLIB_EXT)* $(DESTDIR)$(shlibdir)/
+	cp -a libopenspecfun.*$(SHLIB_EXT)* $(DESTDIR)$(shlibdir)/
 	cp -a libopenspecfun.a $(DESTDIR)$(libdir)/
 	cp -a Faddeeva/Faddeeva.h $(DESTDIR)$(includedir)
 
