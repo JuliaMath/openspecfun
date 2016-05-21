@@ -32,6 +32,7 @@
 #  include <openlibm_complex.h>
 #else
 #  include <math.h>
+#  include <complex.h>
 #endif
 
 #ifdef __cplusplus
