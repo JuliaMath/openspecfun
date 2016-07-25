@@ -39,7 +39,7 @@ all: libopenspecfun.a libopenspecfun.$(OSF_MAJOR_MINOR_SHLIB_EXT)
 libopenspecfun.a: $(OBJS)
 	$(AR) -rcs libopenspecfun.a $(OBJS)
 libopenspecfun.$(OSF_MAJOR_MINOR_SHLIB_EXT): $(OBJS)
-	$(FC) -shared $(OBJS) $(LDFLAGS) -Wl,$(SONAME_FLAG),libopenspecfun.$(OSF_MAJOR_SHLIB_EXT) -o $@
+	$(FC) -shared $(OBJS) $(LDFLAGS) $(LDFLAGS_add) -Wl,$(SONAME_FLAG),libopenspecfun.$(OSF_MAJOR_SHLIB_EXT) -o $@
 ifneq ($(OS),WINNT)
 	ln -sf $@ libopenspecfun.$(OSF_MAJOR_SHLIB_EXT)
 	ln -sf $@ libopenspecfun.$(SHLIB_EXT)

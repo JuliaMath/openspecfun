@@ -27,6 +27,7 @@ CPPFLAGS =
 override FFLAGS_add =
 override CFLAGS_add =
 override CPPFLAGS_add =
+override LDFLAGS_add =
 
 USEGCC = 1
 USECLANG = 0
@@ -56,7 +57,7 @@ endif
 
 ifeq ($(USE_OPENLIBM),1)
 override CPPFLAGS_add += -DUSE_OPENLIBM -I$(includedir) -I$(includedir)/openlibm/
-LDFLAGS += -lopenlibm
+override LDFLAGS_add += -lopenlibm
 endif
 
 default: all
@@ -109,4 +110,4 @@ else
   override FFLAGS_add += -fPIC
   shlibdir = $(libdir)
 endif
-LDFLAGS += -L$(shlibdir)
+override LDFLAGS_add += -L$(shlibdir)
