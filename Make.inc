@@ -32,7 +32,7 @@ override LDFLAGS_add =
 USEGCC = 1
 USECLANG = 0
 
-ifeq ($(OS), Darwin)
+ifneq (,$(findstring $(OS),FreeBSD Darwin))
 USEGCC = 0
 USECLANG = 1
 endif
