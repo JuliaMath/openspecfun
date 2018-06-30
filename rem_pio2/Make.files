@@ -1,4 +1,1 @@
-# complex error functions from the Faddeeva package
-# (http://ab-initio.mit.edu/Faddeeva)
 $(CUR_SRCS) += e_rem_pio2.c e_rem_pio2f.c k_rem_pio2.c
-
