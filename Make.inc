@@ -4,9 +4,9 @@ OS := $(shell uname)
 
 # Do not forget to bump SOMINOR when changing VERSION,
 # and SOMAJOR when breaking ABI in a backward-incompatible way
-VERSION = 0.5.3
+VERSION = 0.5.4
 SOMAJOR = 1
-SOMINOR = 3
+SOMINOR = 4
 
 DESTDIR =
 prefix = /usr/local
