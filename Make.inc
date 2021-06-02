@@ -20,8 +20,8 @@ FC = gfortran
 # simply defaults and are overridable via environment variables or
 # `make CFLAGS="foo"` on the command line
 
-FFLAGS = -O3
-CFLAGS = -std=c99 -Wall -O3
+FFLAGS = -O3 -fno-optimize-sibling-calls
+CFLAGS = -std=c99 -O3
 CPPFLAGS =
 
 override FFLAGS_add =
