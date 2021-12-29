@@ -1,7 +1,7 @@
 OPENLIBM_HOME=$(abspath .)
 include ./Make.inc
 
-SUBDIRS = amos Faddeeva rem_pio2
+SUBDIRS = amos Faddeeva
 
 define INC_template
 TEST=test
