@@ -58,7 +58,7 @@ C
       STI = -ZI*RCAZ
       RZR = (STR+STR)*RCAZ
       RZI = (STI+STI)*RCAZ
-      INU = INT(SNGL(FNU+0.5D0))
+      INU = INT(FNU+0.5D0)
       DNU = FNU - DBLE(FLOAT(INU))
       IF (DABS(DNU).EQ.0.5D0) GO TO 110
       DNU2 = 0.0D0

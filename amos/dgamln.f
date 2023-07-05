@@ -132,7 +132,7 @@ C***FIRST EXECUTABLE STATEMENT  DGAMLN
       IERR=0
       IF (Z.LE.0.0D0) GO TO 70
       IF (Z.GT.101.0D0) GO TO 10
-      NZ = INT(SNGL(Z))
+      NZ = INT(Z)
       FZ = Z - FLOAT(NZ)
       IF (FZ.GT.0.0D0) GO TO 10
       IF (NZ.GT.100) GO TO 10
