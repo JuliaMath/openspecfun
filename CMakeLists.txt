@@ -7,6 +7,7 @@ SET(CMAKE_Fortran_COMPILER gfortran)
 
 SET(SRC_FADDEEVA ${CMAKE_SOURCE_DIR}/Faddeeva)
 SET(FADDEEVA_src ${SRC_FADDEEVA}/Faddeeva.c)
+SET(FADDEEVA_inc ${SRC_FADDEEVA}/Faddeeva.h)
 
 SET(SRC_AMOS ${CMAKE_SOURCE_DIR}/amos)
 SET(AMOS_src
@@ -65,8 +66,13 @@ endif()
 # Trick copied from https://cmake.org/pipermail/cmake/2006-May/009201.html
 ADD_LIBRARY(openspecfun-shared SHARED ${AMOS_src} ${FADDEEVA_src})
 SET_TARGET_PROPERTIES(openspecfun-shared PROPERTIES
-   OUTPUT_NAME openspecfun CLEAN_DIRECT_OUTPUT 1)
+   OUTPUT_NAME openspecfun CLEAN_DIRECT_OUTPUT 1
+   PUBLIC_HEADER "${FADDEEVA_inc}")
 
 ADD_LIBRARY(openspecfun-static STATIC ${AMOS_src} ${FADDEEVA_src})
 SET_TARGET_PROPERTIES(openspecfun-static PROPERTIES
-   OUTPUT_NAME openspecfun CLEAN_DIRECT_OUTPUT 1)
+   OUTPUT_NAME openspecfun CLEAN_DIRECT_OUTPUT 1
+   PUBLIC_HEADER "${FADDEEVA_inc}")
+
+INSTALL(TARGETS openspecfun-shared openspecfun-static
+    PUBLIC_HEADER)
